@@ -44,7 +44,7 @@ internal class NetworkResponseCall<S : Any, E : Any>(
                     if (body != null) {
                         callback.onResponse(
                             this@NetworkResponseCall,
-                            Response.success(NetworkResponse.Success())
+                            Response.success(NetworkResponse.Success(body))
                         )
                     } else {
                         callback.onResponse(

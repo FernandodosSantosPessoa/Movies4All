@@ -53,16 +53,16 @@ class HomeDataSourceImplTest {
     fun `when 4 OF THE REQUEST returns SUCCESSFULLY expect success network response`() = dispatcher.runBlockingTest {
         //Arrange
         `when`(tmdbApi.getTrending(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getUpcoming(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getPopular(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getTopRated(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         var response:NetworkResponse<List<List<MovieDTO>>, ErrorResponse>? = null
         //Act
@@ -85,13 +85,13 @@ class HomeDataSourceImplTest {
             NetworkResponse.ApiError(ErrorResponse(), 400)
         )
         `when`(tmdbApi.getUpcoming(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getPopular(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getTopRated(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         var response:NetworkResponse<List<List<MovieDTO>>, ErrorResponse>? = null
         //Act
@@ -110,13 +110,13 @@ class HomeDataSourceImplTest {
             NetworkResponse.NetworkError(IOException())
         )
         `when`(tmdbApi.getUpcoming(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getPopular(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getTopRated(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         var response:NetworkResponse<List<List<MovieDTO>>, ErrorResponse>? = null
         //Act
@@ -134,13 +134,13 @@ class HomeDataSourceImplTest {
             NetworkResponse.UnknownError(Throwable())
         )
         `when`(tmdbApi.getUpcoming(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getPopular(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         `when`(tmdbApi.getTopRated(AppConstants.LANGUAGE,1)).thenReturn(
-            NetworkResponse.Success()
+            NetworkResponse.Success(movieResponseDTO)
         )
         var response:NetworkResponse<List<List<MovieDTO>>, ErrorResponse>? = null
         //Act

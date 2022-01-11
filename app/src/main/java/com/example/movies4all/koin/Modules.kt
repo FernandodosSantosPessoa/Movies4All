@@ -6,12 +6,13 @@ import com.example.movies4all.network.TmdbApi
 import com.example.movies4all.repository.HomeDataSource
 import com.example.movies4all.viewmodel.HomeViewModel
 import com.movies.allmovies.repository.HomeDataSourceImpl
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,14 +23,14 @@ val networkModule = module {
     factory { loggingClient(get()) }
     factory { providesRetrofitInstance(get()) }
     single { tmdbApi(get()) }
-    single { HomeDataSourceImpl(get()) }
-    single { Dispatchers.Default }
-    single { Dispatchers.IO }
-    single { Dispatchers.Main }
+    single<HomeDataSource> { HomeDataSourceImpl(get()) }
+    single<CoroutineDispatcher>(named("dispatcherdefault")) { Dispatchers.Default }
+    single<CoroutineDispatcher>(named("dispatcherio")) { Dispatchers.IO }
+    single<CoroutineDispatcher>(named("dispatchermain")) { Dispatchers.Main }
 }
 
 val viewModelModule = module {
-    viewModel { HomeViewModel(get(), get(), get()) }
+    viewModel { HomeViewModel(get(), get(named("dispatcherio"))) }
 }
 
 fun providesInterceptor(): Interceptor {

@@ -8,6 +8,7 @@ import com.example.movies4all.network.model.dto.MovieDTO
 import com.example.movies4all.network.model.dto.MovieResponseDTO
 import com.example.movies4all.repository.HomeDataSource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -18,7 +19,7 @@ private val tmdbApi: TmdbApi)
     : HomeDataSource {
 
     override suspend fun getListsOfMovies(dispatcher: CoroutineDispatcher, homeResultCallback:  (result: NetworkResponse<List<List<MovieDTO>>, ErrorResponse>) -> Unit) {
-        withContext(dispatcher){
+        withContext(Dispatchers.IO){
             // This try catch is usefull for notifying us about any thread issue like ths use of .value instead of .postValue in a background thread
             try {
                 val trendingMoviesResponse = async { tmdbApi.getTrending(AppConstants.LANGUAGE, 1) }
@@ -75,7 +76,7 @@ private val tmdbApi: TmdbApi)
                 pair2.first?.let { resultList.add(it) }
                 pair3.first?.let { resultList.add(it) }
                 pair4.first?.let { resultList.add(it) }
-                homeResultCallback(NetworkResponse.Success())
+                homeResultCallback(NetworkResponse.Success(resultList))
             }
         }
     }

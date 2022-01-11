@@ -19,6 +19,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
+import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest {
@@ -51,9 +52,63 @@ class HomeViewModelTest {
         viewModel?.getListsOfMovies()
 
         //Assert
-        assertEquals(listsOfMoviesMock, )
+        assertEquals(listsOfMoviesMock, viewModel.listOfMovies?.value)
+        assertEquals(false, viewModel.isLoading?.value)
+        assertEquals(false, viewModel.errorMessageVisibility?.value)
     }
+     @Test
+    fun `when LISTS OF MOVIE request returns API ERROR expect expect error live data filled`() = dispatcher.runBlockingTest {
+        //Arrange
+        homeDataSourceMock = HomeDataSourceMock(NetworkResponse.ApiError(ErrorResponse(), 0))
+        val viewModel = HomeViewModel(homeDataSourceMock!!, dispatcher)
+
+        //Act
+        viewModel       .getListsOfMovies()
+
+        //Assert
+        assertEquals(null, viewModel.listOfMovies?.value)
+        assertEquals(false, viewModel.isLoading?.value)
+        assertEquals(true, viewModel.errorMessageVisibility?.value)
+        assertEquals(AppConstants.API_ERROR_MESSAGE, viewModel.errorMessage?.value)
+    }
+
+    @Test
+    fun `when LISTS OF MOVIE request returns NETWORK ERROR expect expect error live data filled`() =
+        dispatcher.runBlockingTest {
+            //Arrange
+            homeDataSourceMock = HomeDataSourceMock(NetworkResponse.NetworkError(IOException()))
+            val viewModel = HomeViewModel(homeDataSourceMock!!, dispatcher)
+
+            //Act
+            viewModel.getListsOfMovies()
+
+            //Assert
+            assertEquals(null, viewModel.listOfMovies?.value)
+            assertEquals(false, viewModel.isLoading?.value)
+            assertEquals(true, viewModel.errorMessageVisibility?.value)
+            assertEquals(AppConstants.NETWORK_ERROR_MESSAGE, viewModel.errorMessage?.value)
+        }
+
+    @Test
+    fun `when LISTS OF MOVIE request returns UNKNOW ERROR expect expect error live data filled`() =
+        dispatcher.runBlockingTest {
+            //Arrange
+            homeDataSourceMock = HomeDataSourceMock(NetworkResponse.UnknownError(Throwable()))
+            val viewModel = HomeViewModel(homeDataSourceMock!!, dispatcher)
+
+
+            //Act
+            viewModel.getListsOfMovies()
+
+            //Assert
+            assertEquals(null, viewModel.listOfMovies?.value)
+            assertEquals(false, viewModel.isLoading?.value)
+            assertEquals(true, viewModel.errorMessageVisibility?.value)
+            assertEquals(AppConstants.UNKNOW_ERROR_MESSAGE, viewModel.errorMessage?.value)
+        }
+
 }
+
 
 class HomeDataSourceMock(private val result: NetworkResponse<List<List<MovieDTO>>, ErrorResponse>) : HomeDataSource{
     override suspend fun getListsOfMovies(

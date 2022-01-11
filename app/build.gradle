@@ -30,7 +30,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
+
 
 dependencies {
 
@@ -46,9 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    def dagger_version = "2.28"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     def retrofit_version = "2.9.0"
 
@@ -62,11 +63,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
-    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
 
 
     // Current version
-    def koin_version= "3.1.4"
+    def koin_version= "3.1.5"
 
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$koin_version"
@@ -84,4 +85,22 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8"
 
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    //    RecyclerView
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0-alpha01'//1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+
+    // Read More TextView
+    implementation 'com.borjabravo:readmoretextview:2.1.0'
+
+    //Shimmer layout
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
 }
+
