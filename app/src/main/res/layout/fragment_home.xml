@@ -36,5 +36,6 @@
             app:errorMessage="@{viewModel.errorMessage}"
             app:errorScreenVisibility="@{viewModel.errorMessageVisibility}"
             tools:visibility="invisible"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
