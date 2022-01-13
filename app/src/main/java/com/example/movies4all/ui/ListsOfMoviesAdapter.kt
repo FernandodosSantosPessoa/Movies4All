@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movies4all.R
 import com.example.movies4all.network.model.dto.MovieDTO
 
-class ListsOfMoviesAdapter (val context: Context, val lists: List<List<MovieDTO>>)
+class ListsOfMoviesAdapter (val context: Context, val onClick: OnMovieClick, val lists: List<List<MovieDTO>>)
     : RecyclerView.Adapter<ListsOfMoviesAdapter.MovieListHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListHolder {
@@ -29,7 +29,7 @@ class ListsOfMoviesAdapter (val context: Context, val lists: List<List<MovieDTO>
             else -> "Movies"
         }
         holder.movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        holder.movies.adapter = MovieAdapter(context, lists[position])
+        holder.movies.adapter = MovieAdapter(context, onClick, lists[position])
     }
 
     class MovieListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

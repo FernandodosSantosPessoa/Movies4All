@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +13,8 @@ import com.example.movies4all.databinding.FragmentHomeBinding
 import com.example.movies4all.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+
+class HomeFragment : Fragment(), OnMovieClick {
 
     val viewModel:HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
@@ -40,8 +40,20 @@ class HomeFragment : Fragment() {
             lists?.let {
                 binding.rvListsOfMovies.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvListsOfMovies.adapter = ListsOfMoviesAdapter(requireContext(), lists)
+                binding.rvListsOfMovies.adapter = ListsOfMoviesAdapter(requireContext(), this, lists)
             }
         })
+    }
+
+    override fun onClick(id: Int) {
+        val detailsFrag = DetailsFragment()
+        val args = Bundle()
+        args.putInt("id", id)
+        detailsFrag.arguments = args
+
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.home_fragment,  detailsFrag, "findThisFragment")
+            .addToBackStack(null)
+            .commit()
     }
 }

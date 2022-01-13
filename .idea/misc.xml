@@ -6,8 +6,11 @@
         <entry key="..\:/Users/Tipz/Movies4All/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Tipz/Movies4All/app/src/main/res/layout/home_fragment.xml" value="0.1286231884057971" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23981481481481481" />
+        <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/drawable/black_gradient.xml" value="0.22314814814814815" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/drawable/ic_launcher_background.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/activity_main.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/black_gradient.xml" value="0.2056159420289855" />
+        <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/details_fragment.xml" value="0.2056159420289855" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/home_fragment.xml" value="0.1" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/layout_error.xml" value="0.1" />
         <entry key="..\:/Users/igor_/AndroidStudioProjects/TRALHA DO FERNANDINHO/Movies4All/app/src/main/res/layout/layout_item_movies.xml" value="0.23143115942028986" />
@@ -25,5 +28,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2056159420289855" />
+      </ProjectState>
+    </option>
   </component>
 </project>

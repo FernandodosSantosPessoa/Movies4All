@@ -1,9 +1,11 @@
 package com.example.movies4all.network
 
 import com.example.movies4all.network.model.NetworkResponse
+import com.example.movies4all.network.model.dto.DetailsDTO
 import com.example.movies4all.network.model.dto.MovieResponseDTO
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -40,5 +42,10 @@ interface TmdbApi {
         page: Int
         ): NetworkResponse<MovieResponseDTO, ErrorResponse>
 
+    @GET("movie/{movie_id}")
+    suspend fun getDetails(
+        @Path("movie_id")
+        movie_id: String
+    ): NetworkResponse<DetailsDTO, ErrorResponse>
 
 }

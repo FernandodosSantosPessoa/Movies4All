@@ -12,7 +12,7 @@ import com.example.movies4all.R
 import com.example.movies4all.network.model.dto.MovieDTO
 import com.squareup.picasso.Picasso
 
-class MovieAdapter (val context: Context, val movies: List<MovieDTO>)
+class MovieAdapter (val context: Context, val onClick: OnMovieClick, val movies: List<MovieDTO>)
     : RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
@@ -28,7 +28,12 @@ class MovieAdapter (val context: Context, val movies: List<MovieDTO>)
                 .load("${AppConstants.TMDB_IMAGE_BASE_URL_W185}${poster_path}")
                 .placeholder(R.drawable.placeholder)
                 .into(holder.poster)
+
+            holder.cardView.setOnClickListener {
+                onClick.onClick(id)
+            }
         }
+
     }
 
     class MovieHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
