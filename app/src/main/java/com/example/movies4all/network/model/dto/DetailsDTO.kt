@@ -15,4 +15,5 @@ data class DetailsDTO(
     val title: String,
     val video: Boolean,
     val vote_average: Double
+
 )
