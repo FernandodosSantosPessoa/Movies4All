@@ -4,6 +4,7 @@ import com.example.movies4all.AppConstants
 import com.example.movies4all.network.NetworkResponseAdapterFactory
 import com.example.movies4all.network.TmdbApi
 import com.example.movies4all.repository.HomeDataSource
+import com.example.movies4all.viewmodel.DetailsViewModel
 import com.example.movies4all.viewmodel.HomeViewModel
 import com.movies.allmovies.repository.HomeDataSourceImpl
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,6 +32,7 @@ val networkModule = module {
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get(), get(named("dispatcherio"))) }
+    viewModel { DetailsViewModel(get()) }
 }
 
 fun providesInterceptor(): Interceptor {

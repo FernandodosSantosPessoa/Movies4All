@@ -15,9 +15,9 @@ class DetailsViewModel(private val tmdbApi: TmdbApi) : ViewModel() {
     private val _movieDetails: MutableLiveData<DetailsDTO>? = MutableLiveData()
     val  movieDetails: LiveData<DetailsDTO>? = _movieDetails
 
-    init {
+    fun getDetails (id: Int?) {
         viewModelScope.launch {
-            val response = tmdbApi.getDetails("")
+            val response = tmdbApi.getDetails(id)
 
             when(response){
                 is NetworkResponse.Success -> {
@@ -32,5 +32,4 @@ class DetailsViewModel(private val tmdbApi: TmdbApi) : ViewModel() {
             }
         }
     }
-
 }

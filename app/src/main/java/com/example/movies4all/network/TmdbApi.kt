@@ -45,7 +45,7 @@ interface TmdbApi {
     @GET("movie/{movie_id}")
     suspend fun getDetails(
         @Path("movie_id")
-        movie_id: String
+        movie_id: Int?
     ): NetworkResponse<DetailsDTO, ErrorResponse>
 
 }
